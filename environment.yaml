@@ -24,6 +24,9 @@ dependencies:
   - shap
   - seaborn
   - imbalanced-learn
+  - pandas-profiling
+  - ipywidgets
+  - docopt
   - pip:
     - mglearn
     - psutil>=5.7.2
