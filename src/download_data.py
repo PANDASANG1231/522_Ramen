@@ -1,7 +1,7 @@
 """Downloads data file in .xlsx from the web to a local filepath as a csv file format.
-Usage: src/down_data.py --url=<url> --out_file=<out_file>
+Usage: src/download_data.py --url=<url> --out_file=<out_file>
 Options:
---url=<url>              URL from where to download the data (must be in standard csv format)
+--url=<url>              URL from where to download the data (must be in standard xlsx format)
 --out_file=<out_file>    Path (including filename) of where to locally write the file
 
 Acknowledgement:
