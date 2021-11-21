@@ -1,7 +1,13 @@
 # Ramen Star Prediction
 
-+ Contributors: Allyson Stoll, Irene Yan, Wenjia Zhu, Xiaohan Chen
+**Contributors:**
+
 This is a project for MDS 522 Group6.
+
+  - Allyson Stoll
+  - Irene Yan
+  - Wenjia Zhu
+  - Xiaohan Chen
 
 ## About
 ### Main Question
@@ -18,10 +24,12 @@ grading; a 3.5 score out of 5 stars – (3.5 * 2) * 10 = 70 = C.
 
 Using python:
 
+```
 Usage: src/download_data.py --url=<url> --out_file=<out_file>
 Options:
 --url=<url>              URL from where to download the data (must be in standard xlsx format)
 --out_file=<out_file>    Path (including filename) of where to locally write the file
+```
 
 ## Dependencies
 
