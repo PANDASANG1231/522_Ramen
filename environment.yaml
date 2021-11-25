@@ -27,6 +27,7 @@ dependencies:
   - pandas-profiling
   - ipywidgets
   - docopt
+  - pycountry
   - pip:
     - mglearn
     - psutil>=5.7.2
