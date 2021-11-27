@@ -15,6 +15,7 @@ from docopt import docopt
 import pandas as pd
 from sklearn.compose import ColumnTransformer, make_column_transformer
 from sklearn.preprocessing import OneHotEncoder
+import os
 
 opt = docopt(__doc__)
 

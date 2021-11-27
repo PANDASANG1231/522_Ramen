@@ -13,6 +13,7 @@ Options:
 import pycountry
 import pandas as pd
 from docopt import docopt
+import os
 
 opt = docopt(__doc__)
 
