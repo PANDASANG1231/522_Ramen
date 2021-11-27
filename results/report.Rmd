@@ -48,19 +48,16 @@ knitr::include_graphics("../results/stars_histogram.png")
 
 # Methods
 
-For the preprocessing, we apply One Hot Encoding to transform  `brand`, `country`, and `style` and use bag-of-word to process `variety` feature. We drop `top ten` and `review #`. We also convert the target `Star` rating to a binary variable at a threshold of 3.5, with 1 (`Star` < 3.5) being bad ramen and 0 (`Star` >= 3.5) for good ramen. This threshold is set by the original reviewer himself. The class distribution for the two classes is 0.7 vs. 0.3, which is reasonable and not a concern for class imbalance. 
+For the preprocessing, we apply One Hot Encoding to transform  `brand`, `country`, and `style` and use bag-of-word to process `variety` feature. We drop `top ten` and `review #`. We also convert the target `Star` rating to a binary variable at a threshold of 3.5, with 0 (`Star` < 3.5) being bad ramen and 1 (`Star` >= 3.5) for good ramen. This threshold is set by the original reviewer himself. The class distribution for the two classes is 0.7 vs. 0.3, which is reasonable and not a concern for class imbalance. 
 
-We use the logistic regression model for the prediction problem. We use five fold cross validation to 
-
-
+We use the logistic regression model for the prediction problem. We use five fold cross validation to assess the model. Since we have class imbalance, we use AUC as the scoring metric. We also employ recursive feature elimination to remove the unimportant ones.
 
 # Results
 
-
-
+The logistic regression model gives a AUC score of 0.722 on the test data, which is good enough for a simple model like ours. The estimated values for the coefficients are sorted as below. We can see that good ramens are associated with features like being brand Samyang Foods, having description keyword "goreng", and are made in Singapore. On the other hand, bad ramen noodles are associated with features like being brand Knorr or Ripe'n'Dry and are made in Canada (very unfortunate) or in Netherlands. Now whenever you are craving for quick, simple, and tasty ramen noodles, remember to come back for this coefficients table!
 
 # Critique
 
-Score is not perfect, in
+
 
 # References
