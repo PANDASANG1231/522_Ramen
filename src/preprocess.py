@@ -26,6 +26,7 @@ def main(path, out_file):
     # Relevant transform
     categorical_features = ["Brand", "Variety", "Style", "Country"]
     drop_features = ["Review","Top Ten"]
+    target = ["Stars"]
 
     categorical_transformer = OneHotEncoder(handle_unknown="ignore",sparse=False)
 
@@ -40,6 +41,7 @@ def main(path, out_file):
       columns=preprocessor.get_feature_names_out(),
         index=df.index,
     )
+    df_out["Stars"] = df["Stars"]
 
     # Save the data as csv
     try:
