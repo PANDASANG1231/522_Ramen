@@ -3,7 +3,7 @@
 
 """preprocess for dataframe
 
-Usage: preprocess.py --train_path=<train_path> --test_path=<test_path> --out_file_train=<out_file_train> --out_file_test=<out_file_test>  
+Usage: python preprocess.py --train_path=<train_path> --test_path=<test_path> --out_file_train=<out_file_train> --out_file_test=<out_file_test>  
  
 Options:
 --train_path=<train_path>             the train dataframe to process
@@ -17,6 +17,7 @@ from docopt import docopt
 import pandas as pd
 from sklearn.compose import ColumnTransformer, make_column_transformer
 from sklearn.preprocessing import OneHotEncoder
+from sklearn.feature_extraction.text import CountVectorizer
 import os
 
 opt = docopt(__doc__)
@@ -28,32 +29,41 @@ def main(train_path, test_path, out_file_train, out_file_test):
 
     # Relevant transform
     categorical_features = ["Brand", "Style", "Country"]
-    drop_features = ["Review","Variety", "Top Ten"]
+    text_feature = "Variety"
+
+    drop_features = ["Review","Top Ten"]
     target = ["Stars"]
 
     categorical_transformer = OneHotEncoder(handle_unknown="ignore",sparse=False)
+    text_transformer = CountVectorizer(stop_words="english", max_features=50)
 
     preprocessor = make_column_transformer(
-     (categorical_transformer, categorical_features)
+     (categorical_transformer, categorical_features),
+     (text_transformer, text_feature)
     )
+
     train_trans = preprocessor.fit_transform(df_train)
     test_trans = preprocessor.transform(df_test)
 
-    # Get the transformed data 
+    # Get the transformed data
+    ohe_col = preprocessor.named_transformers_["onehotencoder"].get_feature_names_out().tolist()
+    text_col = preprocessor.named_transformers_["countvectorizer"].get_feature_names_out().tolist()
+
     train_out = pd.DataFrame(
-      data=train_trans,
-      columns=preprocessor.get_feature_names_out(),
+      data=train_trans.toarray(),
+      columns=ohe_col+text_col,
       index=df_train.index,
     )
     train_out["Stars"] = df_train["Stars"]
 
     test_out = pd.DataFrame(
-      data=test_trans,
-      columns=preprocessor.get_feature_names_out(),
+      data=test_trans.toarray(),
+      columns=ohe_col+text_col,
       index=df_test.index,
     )
     test_out["Stars"] = df_test["Stars"]
 
+    print(train_out.shape, test_out.shape)
     # Save the train data as csv
     try:
         train_out.to_csv(out_file_train, index = False)
