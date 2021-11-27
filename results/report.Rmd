@@ -6,7 +6,7 @@ output:
     toc: true
   github_document:
     toc: true
-# bibliography: ramen_rating_refs.bib
+bibliography: ramen_rating_refs.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -19,7 +19,7 @@ library(tidyverse)
 
 # Introduction
 
-In this project, we explored the world of instant noodles, aka ramen. Our data set is from the Ramen Rater website created by a single ramen enthusiast, with over 2500 reviews on all kinds of instant noodles one can possibly find in stores. We are interested in what features are important for predicting a ramen's rating.
+In this project, we explored the world of instant noodles, aka ramen. Our data set is from the Ramen Rater website created by a single ramen enthusiast, with over 2500 reviews on all kinds of instant noodles one can possibly find in stores [@rr]. We are interested in what features are important for predicting a ramen's rating.
 
 # The Dataset
 
@@ -48,12 +48,19 @@ knitr::include_graphics("../results/stars_histogram.png")
 
 # Methods
 
+For the preprocessing, we apply One Hot Encoding to transform  `brand`, `country`, and `style` and use bag-of-word to process `variety` feature. We drop `top ten` and `review #`. We also convert the target `Star` rating to a binary variable at a threshold of 3.5, with 1 (`Star` < 3.5) being bad ramen and 0 (`Star` >= 3.5) for good ramen. This threshold is set by the original reviewer himself. The class distribution for the two classes is 0.7 vs. 0.3, which is reasonable and not a concern for class imbalance. 
+
+We use the logistic regression model for the prediction problem. We use five fold cross validation to 
+
+
+
 # Results
 
 
-interprets the findings
+
 
 # Critique
 
+Score is not perfect, in
 
 # References
