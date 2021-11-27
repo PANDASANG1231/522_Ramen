@@ -35,7 +35,7 @@ def main(train_path, test_path, out_file_train, out_file_test):
     target = ["Stars"]
 
     categorical_transformer = OneHotEncoder(handle_unknown="ignore",sparse=False)
-    text_transformer = CountVectorizer(stop_words="english")
+    text_transformer = CountVectorizer(stop_words="english", max_features = 50)
 
     preprocessor = make_column_transformer(
      (categorical_transformer, categorical_features),
@@ -50,14 +50,14 @@ def main(train_path, test_path, out_file_train, out_file_test):
     text_col = preprocessor.named_transformers_["countvectorizer"].get_feature_names_out().tolist()
 
     train_out = pd.DataFrame(
-      data=train_trans.toarray(),
+      data=train_trans,
       columns=ohe_col+text_col,
       index=df_train.index,
     )
     train_out["Stars"] = df_train["Stars"]
 
     test_out = pd.DataFrame(
-      data=test_trans.toarray(),
+      data=test_trans,
       columns=ohe_col+text_col,
       index=df_test.index,
     )
