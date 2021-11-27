@@ -1,6 +1,5 @@
 ---
-title: "ramen_rating_predict_report"
-author: "Irene Yan"
+title: "Ramen Rating Prediction"
 date: "11/27/2021"
 output: 
   html_document:
@@ -22,7 +21,7 @@ library(tidyverse)
 
 In this project, we explored the world of instant noodles, aka ramen. Our data set is from the Ramen Rater website created by a single ramen enthusiast, with over 2500 reviews on all kinds of instant noodles one can possibly find in stores. We are interested in what features are important for predicting a ramen's rating.
 
-# Data Set
+# The Dataset
 
 Each observation in the data set is a review for a single ramen product. The features include a review number, where bigger number represents a more recent review, the brand, the product's name, its manufacturing country, packing style (such as cup or bowl), and star ratings, which range from 0 to 5 inclusively with 0.25 increments. Note that the stars represent the reviewer's personal taste and are a very subjective scoring.
 
@@ -34,13 +33,18 @@ To understand the data better, we explore to visualize the distribution of the c
 knitr::include_graphics("../results/ramen_map.png")
 ```
 
-There are many variety and the below word cloud displays the most common keywords in ramen descriptions. Wow, these noodles are created with so many flavors! They also come in with different packaging, such as a pack, a bowl or even as a tray.
+There are many variety and the below word cloud displays the most common keywords in ramen descriptions. Wow, these noodles are created with so many flavors! They also come in with different packaging. A half of the sample come in as a pack. But some are sold in a bowl or tray, which are more convenient for direct usage.
 
-```{r variety-distributions, echo=FALSE, fig.cap="Figure 2. Word Cloud of Ramen Variety and Package Style Histogram", out.width = '50%', out.height = '35%', fig.show='hold', fig.align='center'}
+```{r variety-distributions, echo=FALSE, fig.cap="Figure 2. Word Cloud of Ramen Variety and Package Style Histogram", out.width = '50%', out.height = '25%', fig.show='hold', fig.align='center'}
 knitr::include_graphics(c("../results/variety_wordcloud.png",
                           "../results/type_histogram.png"))
 ```
 
+Let's see how the ratings distribute. It look like most ramens are quite tasty! But there are a few that received a zero star.
+
+```{r rating-distributions, echo=FALSE, fig.cap="Figure 3. Histogram of Ratings", out.width = '50%', out.height = '35%'}
+knitr::include_graphics("../results/stars_histogram.png")
+```
 
 # Methods
 
@@ -49,7 +53,7 @@ knitr::include_graphics(c("../results/variety_wordcloud.png",
 
 interprets the findings
 
-# critique
+# Critique
 
 
 # References
