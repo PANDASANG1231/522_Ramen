@@ -8,7 +8,7 @@ dependencies:
   - scikit-learn>=1.0
   - pandas>=1.3.*
   - requests>=2.24.0
-  - altair 
+  - altair_saver
   - vega_datasets
   - graphviz
   - python-graphviz
@@ -28,6 +28,8 @@ dependencies:
   - ipywidgets
   - docopt
   - pycountry
+  - wordcloud
+  - geopandas
   - pip:
     - mglearn
     - psutil>=5.7.2
