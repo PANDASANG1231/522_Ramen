@@ -3,13 +3,14 @@
 
 """Create EDA figures for the 522_Ramen project
 
-Usage: create_EDA_figures.py --path=<path> --out_path=<out_path> 
- 
+Usage: create_EDA_figures.py --path=<path> --out_path=<out_path>
+
 Options:
 --path=<path>             the data to process
 --out_path=<out_path>   Path (excluding filenames) of where to locally write the file
 """
 
+import os
 import pandas as pd
 import random
 
