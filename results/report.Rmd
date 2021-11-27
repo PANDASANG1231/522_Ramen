@@ -28,10 +28,17 @@ Each observation in the data set is a review for a single ramen product. The fea
 
 # Exploratory Data Analysis
 
-Before going into the formal analysis, 
+To understand the data better, we explore to visualize the distribution of the country of origins of all products. It seems that most products come from China, South Korea, Japan, and the USA.
 
-```{r predictor-distributions, echo=FALSE, fig.cap="Figure 1. Origins of Ramen Products", out.width = '100%'}
+```{r country-distributions, echo=FALSE, fig.cap="Figure 1. Origins of Ramen Products", out.width = '100%'}
 knitr::include_graphics("../results/ramen_map.png")
+```
+
+There are many variety and the below word cloud displays the most common keywords in ramen descriptions. Wow, these noodles are created with so many flavors! They also come in with different packaging, such as a pack, a bowl or even as a tray.
+
+```{r variety-distributions, echo=FALSE, fig.cap="Figure 2. Word Cloud of Ramen Variety and Package Style Histogram", out.width = '50%', out.height = '35%', fig.show='hold', fig.align='center'}
+knitr::include_graphics(c("../results/variety_wordcloud.png",
+                          "../results/type_histogram.png"))
 ```
 
 
