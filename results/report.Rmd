@@ -1,0 +1,31 @@
+---
+title: "ramen_rating_predict_report"
+author: "Irene Yan"
+date: "11/27/2021"
+output: 
+  html_document:
+    toc: true
+  github_document:
+    toc: true
+bibliography: ramen_rating_refs.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(knitr)
+library(kableExtra)
+library(tidyverse)
+```
+
+
+# Introduction
+
+question 
+dataset
+presents the results
+interprets the findings
+
+ctitique
+
+
+# References
