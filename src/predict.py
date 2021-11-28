@@ -38,7 +38,7 @@ def main(test_file, model_file, target_name=None):
         
 if __name__ == "__main__":
     print(opt["--target_name"])
-    if len(opt["--target_name"]) > 0:
+    if opt["--target_name"] is not None:
         main(opt["--test_file"], opt["--model_file"], opt["--target_name"])
     else:
         main(opt["--test_file"], opt["--model_file"])
