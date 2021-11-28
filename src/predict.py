@@ -2,12 +2,12 @@
 
 """Predict
 
-Usage: predict.py --test_file=<test_file> --model_file=<model_file>  [--target_name=<target_name>]
+Usage: predict.py --test_file=<test_file> --model_file=<model_file>  --target_name=<target_name>
  
 Options:
 --test_file=<test_file>           the test dataframe to predict
 --model_file=<model_file>   Path (including filename) of the model
-[--target_name=<target_name>]   if test_file has a target col, put the column name here
+--target_name=<target_name>   if test_file has a target col, put the column name here
 
 """
 import pickle
@@ -19,7 +19,7 @@ from tool.tool_function import *
 opt = docopt(__doc__)
 ## Preprocess the target
 
-def main(test_file, model_file, target_name=None):
+def main(test_file, model_file, target_name):
     
     data = pd.read_csv(test_file)
     model = pickle.load(open(model_file, "rb"))
@@ -33,12 +33,8 @@ def main(test_file, model_file, target_name=None):
     data.to_csv("./../results/prediction/prediction.csv", index=False)
 
     print("Plotting metrics in './../results/test_metrics.jpg' ...")
-    if target_name is not None:
-        evaluate_performance(y_test, model.predict_proba(X_test)[:, 1], save="./../results/test_metrics.jpg")
+    evaluate_performance(y_test, model.predict_proba(X_test)[:, 1], save="./../results/test_metrics.jpg")
         
 if __name__ == "__main__":
-    print(opt["--target_name"])
-    if opt["--target_name"] is not None:
-        main(opt["--test_file"], opt["--model_file"], opt["--target_name"])
-    else:
-        main(opt["--test_file"], opt["--model_file"])
+    main(opt["--test_file"], opt["--model_file"], opt["--target_name"])
+
