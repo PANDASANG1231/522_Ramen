@@ -237,21 +237,24 @@ Figure 3. Histogram of Ratings
 </div>
 <div id="methods" class="section level1">
 <h1>Methods</h1>
-<p>For the preprocessing, we apply One Hot Encoding to transform <code>brand</code>, <code>country</code>, and <code>style</code> and use bag-of-word to process <code>variety</code> feature. We drop <code>top ten</code> and <code>review #</code>. We also convert the target <code>Star</code> rating to a binary variable at a threshold of 3.5, with 1 (<code>Star</code> &lt; 3.5) being bad ramen and 0 (<code>Star</code> &gt;= 3.5) for good ramen. This threshold is set by the original reviewer himself. The class distribution for the two classes is 0.7 vs. 0.3, which is reasonable and not a concern for class imbalance.</p>
-<p>We use the logistic regression model for the prediction problem. We use five fold cross validation to</p>
+<p>For the preprocessing, we apply One Hot Encoding to transform <code>brand</code>, <code>country</code>, and <code>style</code> and use bag-of-word to process <code>variety</code> feature. We drop <code>top ten</code> and <code>review #</code>. We also convert the target <code>Star</code> rating to a binary variable at a threshold of 3.5, with 0 (<code>Star</code> &lt; 3.5) being bad ramen and 1 (<code>Star</code> &gt;= 3.5) for good ramen. This threshold is set by the original reviewer himself. The class distribution for the two classes is 0.7 vs. 0.3, which is reasonable and not a concern for class imbalance.</p>
+<p>We use the logistic regression model for the prediction problem. We use five fold cross validation to assess the model. Since we have class imbalance, we use AUC as the scoring metric. We also employ recursive feature elimination to remove the unimportant ones.</p>
 </div>
 <div id="results" class="section level1">
 <h1>Results</h1>
+<p>The logistic regression model gives a AUC score of 0.722 on the test data, which is good enough for a simple model like ours. The estimated values for the coefficients are sorted as below. We can see that good ramens are associated with features like being brand Samyang Foods, having description keyword “goreng” (which refers to fried food in Southeast Asian cuisine <span class="citation">(Wikipedia contributors 2021)</span>), and are made in Singapore. On the other hand, bad ramen noodles are associated with features like being brand Knorr or Ripe’n’Dry and are made in Canada (very unfortunate) or in Netherlands. Now whenever you are craving for quick, simple, and tasty ramen noodles, remember to come back for this coefficients table!</p>
 </div>
 <div id="critique" class="section level1">
 <h1>Critique</h1>
-<p>Score is not perfect, in</p>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="unnumbered">References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-rr" class="csl-entry">
 <span>“THE BIG LIST.”</span> 2021. <em>THE RAMEN RATER</em>. <a href="https://www.theramenrater.com/resources-2/the-list/">https://www.theramenrater.com/resources-2/the-list/</a>.
+</div>
+<div id="ref-goreng" class="csl-entry">
+Wikipedia contributors. 2021. <span>“Goreng — <span>Wikipedia</span><span>,</span> the Free Encyclopedia.”</span> <a href="https://en.wikipedia.org/w/index.php?title=Goreng&amp;oldid=1012204146">https://en.wikipedia.org/w/index.php?title=Goreng&amp;oldid=1012204146</a>.
 </div>
 </div>
 </div>
