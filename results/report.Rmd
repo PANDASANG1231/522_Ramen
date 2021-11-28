@@ -56,8 +56,22 @@ We use the logistic regression model for the prediction problem. We use five fol
 
 The logistic regression model gives a AUC score of 0.722 on the test data, which is good enough for a simple model like ours. The estimated values for the coefficients are sorted as below. We can see that good ramens are associated with features like being brand Samyang Foods, having description keyword "goreng" (which refers to fried food in Southeast Asian cuisine [@goreng]), and are made in Singapore. On the other hand, bad ramen noodles are associated with features like being brand Knorr or Ripe'n'Dry and are made in Canada (very unfortunate) or in Netherlands. Now whenever you are craving for quick, simple, and tasty ramen noodles, remember to come back for this coefficients table!
 
+```{r top_good_coef, echo=FALSE}
+good <- read.csv("Top_20_Good_features.csv")
+kable(good[1:5, 1:2],
+      caption = "Table 1. Coefficients For the Top Five Good Features") %>%
+  kable_styling(full_width = FALSE)
+```
+
+```{r top_bad_coef, echo=FALSE}
+bad <- read.csv("Top_20_Bad_features.csv")
+kable(bad[1:5, 1:2],
+      caption = "Table 2. Coefficients For the Top Five Bad Features") %>%
+  kable_styling(full_width = FALSE)
+```
+
 # Critique
 
-First of all, the amount of data used to build the model is relatively small, which may have a certain impact on the model performance. Secondly, the feature `Top ten` was not used in the analysis process. In the future, we hope to make reasonable use of this indicator after learning more data processing methods. Lastly, we recognize that the data set contains reviews done by a single person, which makes our prediction model very subjective and not generalizable for other poeple. One shall proceed with caution when using this result as a shopping guide.
+First of all, the amount of data used to build the model is relatively small, which may have a certain impact on the model performance. Secondly, the feature `Top ten` was not used in the analysis process. In the future, we hope to make reasonable use of this indicator after learning more data processing methods. Lastly, we recognize that the data set contains reviews done by a single person, which makes our prediction model very subjective and not generalizable for the general audience. One shall proceed with caution when using this result as a shopping guide.
 
 # References
