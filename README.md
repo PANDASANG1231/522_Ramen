@@ -9,9 +9,9 @@ This is a project for MDS 522 Group6.
   - Wenjia Zhu
   - Xiaohan Chen
 
-## About
+## Summary
 
-We will use the StandardScaler(), CountVector() and other method to transform the data and build a linear regression model which can predict a Ramen restaurant's star based on its brand, variety,style, countries and other indicators. And we can also get some conclusions like What ingredients or flavors are most commonly advertised on ramen package labels? in this process. The star scales from 0 to 5, representing how tasty the Ramen will be. This question may not be of the world-changing kind, but it is a good start of figuring out a result in real-life problems with data science for us. Considering the usefulness of this model for food lovers around the world when choosing nearby ramen restaurants, we think this is a very interesting and meaningful question.
+  In this project, we explored the world of instant noodles, aka ramen with a dataset containing over 2500 reviews on all kinds of instant noodles. The main problem we try to solve is to find what features are important for predicting a ramen’s rating. We used the OneHotEncoder(), CountVector() to transform the data. With the logistic regression model, we finally get an AUC score of 0.722 on the test dataset and summarize the top 5 good features and also top 5 bad features in our report. This is not a big question, but it is a good start of figuring out a result in real-life problems with data science for us. Considering the usefulness of this model for food lovers around the world when choosing nearby ramen restaurants, we think this is a very interesting and meaningful question.
 
 ### Dataset
 The dataset we used in this project is downloaded from an data analysist called Aleksey Bilogur.  Each record in the dataset is a single ramen product review. It is updated as of September 22nd, 2021. Current as of review #3950.
@@ -21,17 +21,14 @@ grading; a 3.5 score out of 5 stars – (3.5 * 2) * 10 = 70 = C.
 
 
 ## Report
+The final report can see here: [Report](https://github.com/PANDASANG1231/522_Ramen/blob/main/doc/report.html)
 
 ## Usage
 
-Using python:
+We use python in this project and the workflow and orders of using scripts is as below:
+![avatar](workflow.png)
 
-```
-Usage: src/download_data.py --url=<url> --out_file=<out_file>
-Options:
---url=<url>              URL from where to download the data (must be in standard xlsx format)
---out_file=<out_file>    Path (including filename) of where to locally write the file
-```
+
 
 ## Dependencies
 
