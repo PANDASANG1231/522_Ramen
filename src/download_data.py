@@ -1,11 +1,13 @@
-"""Downloads data file in .xlsx from the web to a local filepath as a csv file format.
-Usage: src/download_data.py --url=<url> --out_file=<out_file>
-Options:
---url=<url>              URL from where to download the data (must be in standard xlsx format)
---out_file=<out_file>    Path (including filename) of where to locally write the file
+# author: Irene and Anthea Chen
+# date: 2021-11-24
 
-Acknowledgement:
-This script is copied and adapted from https://github.com/ttimbers/breast_cancer_predictor/blob/master/src/download_data.py
+"""Download needed dataframe
+
+Usage: download_data.py --url=<url> --out_file=<out_file> 
+ 
+Options:
+--url=<url>             the url for the data set
+--out_file=<out_file>   Path (including filename) of where to locally write the file
 """
   
 from docopt import docopt
@@ -23,7 +25,7 @@ def main(url, out_file):
     print("Website at the provided url does not exist.")
     print(req)
     
-  data = pd.read_csv(url, header=None)
+  data = pd.read_excel(url, header=0)
   
   try:
     data.to_csv(out_file, index = False)

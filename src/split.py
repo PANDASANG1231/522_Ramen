@@ -1,12 +1,12 @@
 # author: Anthea Chen
 # date: 2021-11-19
 
-"""split the downloaded dataframe
+"""Split the downloaded dataframe into train and test sets
 
-Usage: split.py --path=<path> --out_file_train=<out_file_train> --out_file_test=<out_file_test>  
+Usage: split.py --path=<path> --out_file_train=<out_file_train> --out_file_test=<out_file_test>
  
 Options:
---path=<path>             the train dataframe to split
+--path=<path>                       The train dataframe to split
 --out_file_train=<out_file_train>   Path (including filename) of where to locally write the train data
 --out_file_test=<out_file_test>     Path (including filename) of where to locally write the test data
 """
