@@ -40,11 +40,13 @@ data/process/train_df.csv data/process/test_df.csv src/preprocess.py
 # create model and supporting figures
 results/best_model.pkl results/train_metrics.jpg results/Top_20_Good_features.csv results/Top_20_Bad_features.csv : \
 data/process/train_process.csv src/train_model.py
-	python src/train_model.py --train_file="data/process/train_process.csv" --out_file_train="results/best_model.pkl"
+	python src/train_model.py --train_file="data/process/train_process.csv" --out_file_train="results/best_model.pkl" \
+	--out_file_result="results/"
 
 # test model predictions
 results/prediction/prediction.csv results/test_metrics.jpg : data/process/test_process.csv results/best_model.pkl src/predict.py
-	python src/predict.py --test_file="data/process/test_process.csv" --model_file="results/best_model.pkl"
+	python src/predict.py --test_file="data/process/test_process.csv" --model_file="results/best_model.pkl" \
+	--out_file_result="results/prediction/"
 
 # write the report
 doc/Report.html : results/prediction/prediction.csv results/test_metrics.jpg \
