@@ -13,39 +13,39 @@ all : doc/Report.html
 
 # download the dataset from The Ramen Rater website
 data/raw/ramen_ratings.csv : src/download_data.py
-	python src/download_data.py --url="https://www.theramenrater.com/wp-content/uploads/2021/09/The-Big-List-All-reviews-up-to-3950.xlsx" \
+	python3.9 src/download_data.py --url="https://www.theramenrater.com/wp-content/uploads/2021/09/The-Big-List-All-reviews-up-to-3950.xlsx" \
 	--out_file="data/raw/ramen_ratings.csv"
 
 # split the dataset
 data/process/train_df.csv data/process/test_df.csv : data/raw/ramen_ratings.csv src/split.py
-	python src/split.py --path="data/raw/ramen_ratings.csv" --out_file_train="data/process/train_df.csv" \
+	python3.9 src/split.py --path="data/raw/ramen_ratings.csv" --out_file_train="data/process/train_df.csv" \
 	--out_file_test="data/process/test_df.csv"
 
 # add country codes to the dataset
 data/process/train_codes_df.csv : data/process/train_df.csv src/get_countrycode_data.py
-	python src/get_countrycode_data.py --path="data/process/train_df.csv" \
+	python3.9 src/get_countrycode_data.py --path="data/process/train_df.csv" \
 	--out_file="data/eda/train_codes_df.csv"
 
 # complete EDA figures
 results/figures/stars_histogram.png results/figures/type_histogram.png \
 results/figures/variety_wordcloud.png results/figures/ramen_map.png : data/eda/train_codes_df.csv src/generate_EDA_figures.py
-	python src/generate_EDA_figures.py --path="data/eda/train_codes_df.csv" --out_path="results/figures/"
+	python3.9 src/generate_EDA_figures.py --path="data/eda/train_codes_df.csv" --out_path="results/figures/"
 
 # preprocess data for modeling
 data/process/train_process.csv data/process/test_process.csv : \
 data/process/train_df.csv data/process/test_df.csv src/preprocess.py
-	python src/preprocess.py --train_path="data/process/train_df.csv" --test_path="data/process/test_df.csv" \
+	python3.9 src/preprocess.py --train_path="data/process/train_df.csv" --test_path="data/process/test_df.csv" \
 	--out_file_train="data/process/train_process.csv" --out_file_test="data/process/test_process.csv"
 
 # create model and supporting figures
 results/best_model.pkl results/train_metrics.jpg results/Top_20_Good_features.csv results/Top_20_Bad_features.csv : \
 data/process/train_process.csv src/train_model.py
-	python src/train_model.py --train_file="data/process/train_process.csv" --out_file_train="results/best_model.pkl" \
+	python3.9 src/train_model.py --train_file="data/process/train_process.csv" --out_file_train="results/best_model.pkl" \
 	--out_file_result="results/"
 
 # test model predictions
 results/prediction/prediction.csv results/test_metrics.jpg : data/process/test_process.csv results/best_model.pkl src/predict.py
-	python src/predict.py --test_file="data/process/test_process.csv" --model_file="results/best_model.pkl" \
+	python3.9 src/predict.py --test_file="data/process/test_process.csv" --model_file="results/best_model.pkl" \
 	--out_file_result="results/prediction/"
 
 # write the report

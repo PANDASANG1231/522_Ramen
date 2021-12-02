@@ -43,7 +43,7 @@ def main(train_file, out_file_train, out_file_result):
     
     
     train_data = pd.read_csv(train_file)
-    train_data["Stars"] = train_data["Stars"].replace("Unrated", -1).astype(float).apply(handle_target)
+    train_data["Stars"] = pd.to_numeric(train_data["Stars"], errors='coerce').fillna(-1).astype(float).apply(handle_target)
 
     list_feature = [x for x in train_data if x != "Stars"]
 

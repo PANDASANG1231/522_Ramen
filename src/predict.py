@@ -24,7 +24,7 @@ def main(test_file, model_file, out_file_result, target_name):
     data = pd.read_csv(test_file)
     model = pickle.load(open(model_file, "rb"))
     
-    data[target_name] = data[target_name].replace("Unrated", -1).astype(float).apply(handle_target)
+    data[target_name] = pd.to_numeric(data[target_name], errors='coerce').fillna(-1).astype(float).apply(handle_target)
     list_feature = [x for x in data if x != target_name]
     X_test, y_test = data[list_feature], data[target_name]
     
