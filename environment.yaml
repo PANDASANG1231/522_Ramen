@@ -30,6 +30,7 @@ dependencies:
   - pycountry
   - wordcloud
   - geopandas
+  - openpyxl
   - pip:
     - mglearn
     - psutil>=5.7.2
