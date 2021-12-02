@@ -26,12 +26,25 @@ def main(path, out_file):
             CODE.append(code)
         except:
             CODE.append('None')
+            
     # create a column for code 
     df['code']=CODE
-    manual_change = df[df['code']== 'None']['Country'].value_counts().index.tolist()
-    manual_code = ["USA","KOR", "CHN", "VNM", "GBR", "NLD","ARE","MYS"]
-    for i in range(len(manual_change)):
-        df.loc[df["Country"] == manual_change[i], "code"] = manual_code[i]
+    replace_dict = {
+    "South Korea":"KOR",
+    "Souh Korea":"KOR",
+    "Taiwan":"CHN",
+    "Vietnam":"VNM",
+    "UK":"GBR",
+    "Russia":"RUS",
+    "Holland":"NLD",
+    "Sarawak":"MYS",
+    "Dubai":"ARE",
+    "USA":"USA"}
+
+    for key,value in replace_dict.items():
+        df.loc[df["Country"] == key, "code"] = value
+
+    #save the file
     try:
         df.to_csv(out_file, index = False)
     except:
