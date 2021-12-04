@@ -28,7 +28,7 @@ def main(test_file, model_file, out_file_result, target_name):
     list_feature = [x for x in data if x != target_name]
     X_test, y_test = data[list_feature], data[target_name]
     
-    prediction_path = os.path.join(out_file_result, 'prediction/prediction.csv')
+    prediction_path = os.path.join(out_file_result, 'prediction.csv')
     test_metric_path = os.path.join(out_file_result, 'test_metrics.jpg')
 
 
