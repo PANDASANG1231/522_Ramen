@@ -90,7 +90,7 @@ def main(path, out_path):
     # Creating map of ramen source locations
     # Modeled after blog post on relataly.com on heatmap plotting maps
     # https://www.relataly.com/visualize-covid-19-data-on-a-geographic-heat-maps/291/
-    SHAPEFILE = "data/shapefiles/ne_110m_admin_0_countries.shp"
+    SHAPEFILE = "data/eda/shapefiles_for_eda/ne_110m_admin_0_countries.shp"
 
     geo_df = gpd.read_file(SHAPEFILE)[["ADMIN", "ADM0_A3", "geometry"]]
 
