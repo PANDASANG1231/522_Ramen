@@ -44,7 +44,7 @@ data/processed/train_processed.csv src/train_model.py
 	--out_file_result="results/"
 
 # test model predictions
-results/prediction/prediction.csv results/test_metrics.jpg : data/processed/test_processed.csv results/best_model.pkl src/predict.py
+results/prediction/prediction.csv results/prediction/test_metrics.jpg : data/processed/test_processed.csv results/best_model.pkl src/predict.py
 	python3.9 src/predict.py --test_file="data/processed/test_processed.csv" --model_file="results/best_model.pkl" \
 	--out_file_result="results/prediction/"
 
