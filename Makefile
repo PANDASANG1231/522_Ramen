@@ -1,12 +1,13 @@
 # Makefile
-# Allyson Stoll, Dec 2021
+# Allyson Stoll, Irene Yan
+# Dec 4, 2021
 
 # This Makefile completes data download and preprocessing
 # prior to EDA and model building of a ramen rating model 
 # based on ramen ratings from The Ramen Rater.
 
 # Example usage:
-# make data/raw/ramen_ratings.csv
+# make all
 
 #make all dependencies
 all : doc/Report.html
@@ -49,11 +50,12 @@ results/prediction/prediction.csv results/prediction/test_metrics.jpg : data/pro
 	--out_file_result="results/prediction/"
 
 # write the report
-doc/Report.html : results/prediction/prediction.csv results/test_metrics.jpg \
+doc/Report.html : results/prediction/prediction.csv results/prediction/test_metrics.jpg \
 results/figures/stars_histogram.png results/figures/type_histogram.png \
 results/figures/variety_wordcloud.png results/figures/ramen_map.png
 	Rscript -e "rmarkdown::render('doc/Report.Rmd')"
 
+# remove the entire analysis
 clean :
 	rm -rf data/raw/ramen_ratings.csv
 	rm -rf data/processed/train_df.csv
@@ -70,4 +72,5 @@ clean :
 	rm -rf results/Top_20_Good_features.csv
 	rm -rf results/Top_20_Bad_features.csv
 	rm -rf results/prediction/prediction.csv
-	rm -rf results/test_metrics.jpg
+	rm -rf results/prediction/test_metrics.jpg
+	rm -rf doc/Report.html

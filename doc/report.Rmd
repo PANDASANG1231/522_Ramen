@@ -34,20 +34,20 @@ Each observation in the data set is a review for a single ramen product. The fea
 To understand the data better, we explore to visualize the distribution of the country of origins of all products. It seems that most products come from China, South Korea, Japan, and the USA.
 
 ```{r country-distributions, echo=FALSE, fig.cap="Figure 1. Origins of Ramen Products", out.width = '100%'}
-knitr::include_graphics("../results/ramen_map.png")
+knitr::include_graphics("../results/figures/ramen_map.png")
 ```
 
 There are many variety and the below word cloud displays the most common keywords in ramen descriptions. Wow, these noodles are created with so many flavors! They also come in with different packaging. A half of the sample come in as a pack. But some are sold in a bowl or tray, which are more convenient for direct usage.
 
 ```{r variety-distributions, echo=FALSE, fig.cap="Figure 2. Word Cloud of Ramen Variety and Package Style Histogram", out.width = '50%', out.height = '25%', fig.show='hold', fig.align='center'}
-knitr::include_graphics(c("../results/variety_wordcloud.png",
-                          "../results/type_histogram.png"))
+knitr::include_graphics(c("../results/figures/variety_wordcloud.png",
+                          "../results/figures/type_histogram.png"))
 ```
 
 Let's see how the ratings distribute. It look like most ramens are quite tasty! But there are a few that received a zero star.
 
 ```{r rating-distributions, echo=FALSE, fig.cap="Figure 3. Histogram of Ratings", out.width = '50%', out.height = '35%'}
-knitr::include_graphics("../results/stars_histogram.png")
+knitr::include_graphics("../results/figures/stars_histogram.png")
 ```
 
 # Methods
@@ -79,3 +79,6 @@ kable(bad[1:5, 1:2],
 First of all, the amount of data used to build the model is relatively small, which may have a certain impact on the model performance. Secondly, the feature `Top ten` was not used in the analysis process. In the future, we hope to make reasonable use of this indicator after learning more data processing methods. Lastly, we recognize that the data set contains reviews done by a single person, which makes our prediction model very subjective and not generalizable for the general audience. One shall proceed with caution when using this result as a shopping guide.
 
 # References
+@knitr
+
+@docopt
