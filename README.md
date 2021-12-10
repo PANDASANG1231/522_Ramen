@@ -19,7 +19,7 @@ This is a project for MDS 522 Group6.
 
   In this project, we explored the world of instant noodles, aka ramen with a dataset containing over 2500 reviews on all kinds of instant noodles. The main problem we try to solve is to find what features are important for predicting a ramen’s rating. We used the OneHotEncoder(), CountVector() to transform the data. With the logistic regression model, we finally get an AUC score of 0.722 on the test dataset and summarize the top 5 good features and also top 5 bad features in our report. 
 ### Dataset
-The dataset[dataset](https://www.theramenrater.com/wp-content/uploads/2021/09/The-Big-List-All-reviews-up-to-3950.xlsx) we used in this project is downloaded from an data analysist called Aleksey Bilogur. Reviews are based on personal preferences, not on sales of popularity. It is updated as of September 22nd, 2021. Current as of review #3950, recording the Ramen features including:
+The [dataset](https://www.theramenrater.com/wp-content/uploads/2021/09/The-Big-List-All-reviews-up-to-3950.xlsx) we used in this project is downloaded from an data analysist called Aleksey Bilogur. Reviews are based on personal preferences, not on sales of popularity. It is updated as of September 22nd, 2021. Current as of review #3950, recording the Ramen features including:
  - Review: Record ID, not meaningful for Ramen itself.
  - Brand: The company produces this Ramen
  - Variety: A brief description about Ramen's tasty style like spicy, chicken, etc.
