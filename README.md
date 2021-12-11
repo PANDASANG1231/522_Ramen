@@ -49,7 +49,7 @@ You can run the pipeline with:
 Use makefile and run the following command from terminal at the root directory of this repo:
 >Make all
 
-<img src="https://raw.githubusercontent.com/PANDASANG1231/522_Ramen/main/Makefile.png" height="300px">
+<img src="https://raw.githubusercontent.com/PANDASANG1231/522_Ramen/main/Makefile.png" height="200px">
 
 
 ## Dependencies
