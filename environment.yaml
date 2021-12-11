@@ -32,6 +32,7 @@ dependencies:
   - geopandas
   - openpyxl
   - pip:
+    - boruta==0.3
     - mglearn
     - psutil>=5.7.2
     - rpy2

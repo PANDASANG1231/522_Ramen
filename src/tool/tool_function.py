@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from sklearn.model_selection import cross_validate
 from sklearn.metrics import roc_curve, auc
 
 
