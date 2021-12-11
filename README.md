@@ -75,11 +75,9 @@ The dependencies is listed in the environment.yaml, which you can find [here](ht
   - jinja2y
   - pip
   - py-xgboost==1.3.0
-  - catboost
   - spacy
   - wikipedia
   - nltk
-  - seaborn
   - imbalanced-learn
   - pandas-profiling
   - ipywidgets
@@ -89,6 +87,10 @@ The dependencies is listed in the environment.yaml, which you can find [here](ht
   - geopandas
   - openpyxl
   - pip:
+    - boruta=0.3
+    - seaborn=0.11.2
+    - shap-0.4.0.0
+    - catboost=1.0.3
     - mglearn
     - psutil>=5.7.2
     - rpy2
