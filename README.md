@@ -59,6 +59,9 @@ To revert to a clean state and redo all the analysis, run the following command 
 make clean
 ```
 
+<img src="https://raw.githubusercontent.com/PANDASANG1231/522_Ramen/main/Makefile.png" height="200px">
+
+
 ## Dependencies
 
 The dependencies is listed in the environment.yaml, which you can find [here](https://raw.githubusercontent.com/PANDASANG1231/522_Ramen/main/environment.yaml).
