@@ -1,8 +1,8 @@
-# Ramen Star Prediction
+# Ramen Ratings Prediction
 
 **Contributors:**
 
-This is a project for MDS 522 Group6.
+This is a class project for DSCI 522 (Data Science Workflows), a course in the Master of Data Science program at the University of British Columbia.
 
   - Allyson Stoll
   - Irene Yan
@@ -45,9 +45,19 @@ We use python in this project and the workflow and orders of using scripts is as
 ### With Docker
 You can run the pipeline with:
 >To be added
+
 ### Without Docker
-Use makefile and run the following command from terminal at the root directory of this repo:
->Make all
+To reproduce the analysis without using Docker, clone this GitHub repository, install the [dependencies](#dependencies) listed below, and run the following command at the command line/terminal from the root directory of this project:
+
+```
+make all
+```
+
+To revert to a clean state and redo all the analysis, run the following command at the command line/terminal from the root directory of this project:
+
+```
+make clean
+```
 
 <img src="https://raw.githubusercontent.com/PANDASANG1231/522_Ramen/main/Makefile.png" height="200px">
 
@@ -68,11 +78,9 @@ The dependencies is listed in the environment.yaml, which you can find [here](ht
   - jinja2y
   - pip
   - py-xgboost==1.3.0
-  - catboost
   - spacy
   - wikipedia
   - nltk
-  - seaborn
   - imbalanced-learn
   - pandas-profiling
   - ipywidgets
@@ -82,6 +90,10 @@ The dependencies is listed in the environment.yaml, which you can find [here](ht
   - geopandas
   - openpyxl
   - pip:
+    - boruta=0.3
+    - seaborn=0.11.2
+    - shap-0.4.0.0
+    - catboost=1.0.3
     - mglearn
     - psutil>=5.7.2
     - rpy2
@@ -96,11 +108,9 @@ The source code for the site is licensed under the MIT license, which you can fi
 
 <div id="ref-Dua2019">
 
-Updated as of September 22nd, 2021. Current as of review #3950.
-reviews are based on personal preferences, not on sales of popularity.
-Scores are in .25 increments – rounding is NOT recommended. Think of letter
-grading; a 3.5 score out of 5 stars – (3.5 * 2) * 10 = 70 = C.
- <https://www.theramenrater.com/resources-2/the-list/>.
+The data set was most recently updated on September 22nd, 2021 with 3950 reviews.
+All the reviews are based on the personal preference of the author and are not based on sales or popularity. The rating scores are in .25 increments – rounding is NOT recommended. You may think of it as a letter grading; a 3.5 score out of 5 stars is equivalent to (3.5 * 2) * 10 = 70 = C.
+ <https://www.theramenrater.com/wp-content/uploads/2021/09/The-Big-List-All-reviews-up-to-3950.xlsx>.
 </div>
 
 <div id="ref-Streetetal">
