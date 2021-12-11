@@ -41,14 +41,14 @@ The final report can see here: [Report](https://github.com/PANDASANG1231/522_Ram
 ## Usage
 
 We use python in this project and the workflow and orders of using scripts is as below:
-![avatar](workflow.png){:height="100px" width="400px"}
+![avatar](workflow.png)
 ### With Docker
 You can run the pipeline with:
 >To be added
 ### Without Docker
 Use makefile and run the following command from terminal at the root directory of this repo:
 >Make all
-![avatar](Makefile.png)
+![avatar](Makefile.png =100x20)
 
 
 ## Dependencies
