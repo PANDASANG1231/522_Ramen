@@ -52,7 +52,13 @@ knitr::include_graphics("../results/figures/stars_histogram.png")
 
 # Methods
 
-For the preprocessing, we apply One Hot Encoding to transform  `brand`, `country`, and `style` and use bag-of-word to process `variety` feature. We drop `top ten` and `review #`. We also convert the target `Star` rating to a binary variable at a threshold of 3.5, with 0 (`Star` < 3.5) being bad ramen and 1 (`Star` >= 3.5) for good ramen. This threshold is set by the original reviewer himself. The class distribution for the two classes is 0.7 vs. 0.3, which is reasonable and not a concern for class imbalance. 
+For the preprocessing, we apply One Hot Encoding to transform  `brand`, `country`, and `style` and use bag-of-word to process `variety` feature. We drop `top ten` and `review #`. We also convert the target `Star` rating to a binary variable at a threshold of 3.5, with 0 (`Star` < 3.5) being bad ramen and 1 (`Star` >= 3.5) for good ramen. This threshold is set by the original reviewer himself. The class distribution for the two classes is 0.7 vs. 0.3, so we decide to train the model with parameter `class_weights` equals to `balanced`.
+
+While doing model selection, we tried 4 types of model, which are `CatBoost` (package catboost), `Logistic Regression`, `Random Forest`, and `SVM` (package sklearn). While doing feature selection, we used one wrapper algorithms (boruta algorithm) and recursive feature elimination. We finally chose `CatBoost` and `Boruta Algorithm` selected features as our final model's setup.  
+
+```{r country-distributions, echo=FALSE, fig.cap="Figure 4. Test accuracy and Train/Test accuracy gap of different combinations", out.width = '100%'}
+knitr::include_graphics("../results/feature_model_selection.jpg")
+```
 
 We use the logistic regression model for the prediction problem. We use five fold cross validation to assess the model. Since we have class imbalance, we use AUC as the scoring metric. We also employ recursive feature elimination to remove the unimportant ones.
 
