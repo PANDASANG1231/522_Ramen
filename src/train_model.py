@@ -2,10 +2,11 @@
 
 """Train the model
 
-Usage: train_model.py --train_file=<train_file> --out_file_train=<out_file_train> --out_file_result=<out_file_result>
+Usage: train_model.py --train_file=<train_file> --test_file=<test_file> --out_file_train=<out_file_train> --out_file_result=<out_file_result>
  
 Options:
 --train_file=<train_file>           the train dataframe to train
+--test_file=<test_file>           the test dataframe to evaluate
 --out_file_train=<out_file_train>   Path (including filename) of where to locally write the model
 --out_file_result=<out_file_result>   Path (including filename) of where to locally write the results
 """
@@ -14,6 +15,7 @@ from docopt import docopt
 from tool.tool_function import *
 
 import os
+import shap
 import pickle
 import numpy as np
 import pandas as pd
@@ -28,14 +30,12 @@ from sklearn.svm import SVC
 from sklearn.model_selection import RandomizedSearchCV
 from catboost import CatBoostClassifier
 
-def load_data(file):
-    
-    data = pd.read_csv(file)
-    print(data.shape)
-    data["Stars"] = pd.to_numeric(data["Stars"], errors='coerce').fillna(-1).astype(float).apply(handle_target)
-    X, y = data.drop(["Stars"], axis=1), data["Stars"]
-    
-    return X, y
+from sklearn.metrics import (
+    accuracy_score,
+    f1_score,
+    precision_score,
+    recall_score,
+)
 
 def feature_selection(X_train, y_train):
     
@@ -115,9 +115,10 @@ def model_train(X_train, y_train, feature_list, out_file_result):
         "n_estimators": [400, 500, 600, 700, 800],
     }
     model = CatBoostClassifier(random_state=123, verbose=0,class_weights=[0.2, 0.3])
-    rscv = RandomizedSearchCV(model, param_grid, scoring='accuracy', cv=5, return_train_score=True)
+    rscv = RandomizedSearchCV(model, param_grid, scoring='accuracy', cv=5, random_state=123, return_train_score=True)
     rscv.fit(X_train[feature_list], y_train)
-    
+    print(rscv.best_params_)
+
     final_model = CatBoostClassifier(random_state=123, verbose=0,class_weights=[0.2, 0.3], **rscv.best_params_)
     
     scores = cross_validate(
@@ -132,12 +133,50 @@ def model_train(X_train, y_train, feature_list, out_file_result):
     
     return final_model
 
+def model_evaluate(model, X_train, y_train, X_test, y_test, out_file_result):
+    
+    scoring_dict = {
+        "accuracy": accuracy_score,
+        "f1": f1_score,
+        "recall": precision_score,
+        "precision": recall_score,
+    }
+
+    y_test_hat = model.predict(X_test)
+    y_train_hat = model.predict(X_train)
+
+    heads, metrics = [], []
+    for i in scoring_dict:
+        for j in [ "test", "train",]:
+            if j == "train":
+                y = y_train
+                y_hat = y_train_hat
+            else:
+                y = y_test
+                y_hat = y_test_hat
+                
+            heads.append(j+"_"+i)
+            metrics.append(scoring_dict[i](y_hat, y))
+            
+    df = pd.DataFrame([metrics], columns=heads)
+    df.to_csv(os.path.join(out_file_result, 'test_metric.csv'), index=False)
+    
+    tree_explainer = shap.TreeExplainer(model)
+    train_shap_values = tree_explainer.shap_values(X_train[model.feature_names_])
+    plt.clf()
+    shap.summary_plot(train_shap_values, X_train[model.feature_names_], show=False)
+    plt.tight_layout()
+    plt.savefig(os.path.join(out_file_result, 'shap_explainer.jpg'))
+    
+
 
 opt = docopt(__doc__)
 
-def main(train_file, out_file_train, out_file_result):
+def main(train_file, test_file, out_file_train, out_file_result):
     
     X_train, y_train = load_data(train_file)
+    X_test, y_test = load_data(test_file)
+
     print("##########")
     print("Start model_selection and feature selection")
 
@@ -158,11 +197,12 @@ def main(train_file, out_file_train, out_file_result):
     print("Start model train")
 
     final_model = model_train(X_train, y_train, feature_list=features_2, out_file_result=out_file_result)
+    model_evaluate(final_model, X_train, y_train, X_test, y_test, out_file_result)
 
     print(f"Writing model in '{out_file_train}' ...")
     pickle.dump(final_model, open(out_file_train, "wb"))
     
     
 if __name__ == "__main__":
-    main(opt["--train_file"], opt["--out_file_train"], opt["--out_file_result"])
+    main(opt["--train_file"], opt["--test_file"], opt["--out_file_train"], opt["--out_file_result"])
 
