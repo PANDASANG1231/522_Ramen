@@ -1,8 +1,8 @@
-# Ramen Star Prediction
+# Ramen Ratings Prediction
 
 **Contributors:**
 
-This is a project for MDS 522 Group6.
+This is a class project for DSCI 522 (Data Science Workflows), a course in the Master of Data Science program at the University of British Columbia.
 
   - Allyson Stoll
   - Irene Yan
