@@ -87,7 +87,7 @@ As below, the plot shows us the confusion matrix of the CatBoost.
 knitr::include_graphics("../results/confusion_matrix.jpg")
 ```
 
-# Interpetation
+# Interpretation
 
 Shapley value are used here to explain the CatBoost as below. We can see that there are more good ramens associated features than those of bad ramens. It makes sense because the dataset tends to score positively to ramens. Good ramen noodles are usually associated with features like being brand Samyang Foods or Nissin, having description keyword "goreng" (which refers to fried food in Southeast Asian cuisine [@goreng]), and are made in Japan or Indonesia. On the other hand, bad ramen noodles are associated with features like being cup noodle or made in United States. Now whenever you are craving for quick, simple, and tasty ramen noodles, remember to come back for this plot!
 
