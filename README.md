@@ -48,7 +48,8 @@ You can run the pipeline with:
 ### Without Docker
 Use makefile and run the following command from terminal at the root directory of this repo:
 >Make all
-![avatar-h1000](Makefile.png)
+
+<img src="https://raw.githubusercontent.com/PANDASANG1231/522_Ramen/main/Makefile.png" height="1000px">
 
 
 ## Dependencies
