@@ -41,7 +41,7 @@ The final report can see here: [Report](https://github.com/PANDASANG1231/522_Ram
 ## Usage
 
 We use python in this project and the workflow and orders of using scripts is as below:
-![avatar](workflow.png)
+![avatar](workflow.png){:height="100px" width="400px"}
 ### With Docker
 You can run the pipeline with:
 >To be added
