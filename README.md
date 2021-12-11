@@ -45,9 +45,19 @@ We use python in this project and the workflow and orders of using scripts is as
 ### With Docker
 You can run the pipeline with:
 >To be added
+
 ### Without Docker
-Use makefile and run the following command from terminal at the root directory of this repo:
->Make all
+To reproduce the analysis without using Docker, clone this GitHub repository, install the [dependencies](#dependencies) listed below, and run the following command at the command line/terminal from the root directory of this project:
+
+```
+make all
+```
+
+To revert to a clean state and redo all the analysis, run the following command at the command line/terminal from the root directory of this project:
+
+```
+make clean
+```
 
 ## Dependencies
 
@@ -93,11 +103,9 @@ The source code for the site is licensed under the MIT license, which you can fi
 
 <div id="ref-Dua2019">
 
-Updated as of September 22nd, 2021. Current as of review #3950.
-reviews are based on personal preferences, not on sales of popularity.
-Scores are in .25 increments – rounding is NOT recommended. Think of letter
-grading; a 3.5 score out of 5 stars – (3.5 * 2) * 10 = 70 = C.
- <https://www.theramenrater.com/resources-2/the-list/>.
+The data set was most recently updated on September 22nd, 2021 with 3950 reviews.
+All the reviews are based on the personal preference of the author and are not based on sales or popularity. The rating scores are in .25 increments – rounding is NOT recommended. You may think of it as a letter grading; a 3.5 score out of 5 stars is equivalent to (3.5 * 2) * 10 = 70 = C.
+ <https://www.theramenrater.com/wp-content/uploads/2021/09/The-Big-List-All-reviews-up-to-3950.xlsx>.
 </div>
 
 <div id="ref-Streetetal">
