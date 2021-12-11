@@ -39,20 +39,23 @@ data/processed/train_df.csv data/processed/test_df.csv src/preprocess.py
 	--out_file_train="data/processed/train_processed.csv" --out_file_test="data/processed/test_processed.csv"
 
 # create model and supporting figures
-results/best_model.pkl results/train_metrics.jpg results/Top_20_Good_features.csv results/Top_20_Bad_features.csv : \
+results/best_model.pkl results/feature_model_selection.jpg results/shap_explainer.jpg results/cross_valid_metric.csv results/test_metric.csv : \
 data/processed/train_processed.csv src/train_model.py
-	python3.9 src/train_model.py --train_file="data/processed/train_processed.csv" --out_file_train="results/best_model.pkl" \
+	python3.9 src/train_model.py --train_file="data/processed/train_processed.csv" --test_file="data/processed/test_processed.csv" --out_file_train="results/best_model.pkl" \
 	--out_file_result="results/"
 
 # test model predictions
-results/prediction/prediction.csv results/prediction/test_metrics.jpg : data/processed/test_processed.csv results/best_model.pkl src/predict.py
+results/prediction.csv results/confusion_matrix.jpg : data/processed/test_processed.csv results/best_model.pkl src/predict.py
 	python3.9 src/predict.py --test_file="data/processed/test_processed.csv" --model_file="results/best_model.pkl" \
-	--out_file_result="results/prediction/"
+	--out_file_result="results/"
 
 # write the report
 doc/Report.html : results/prediction/prediction.csv results/prediction/test_metrics.jpg \
 results/figures/stars_histogram.png results/figures/type_histogram.png \
-results/figures/variety_wordcloud.png results/figures/ramen_map.png
+results/figures/variety_wordcloud.png results/figures/ramen_map.png \
+results/feature_model_selection.jpg results/shap_explainer.jpg \
+results/cross_valid_metric.csv results/test_metric.csv \
+results/confusion_matrix.jpg
 	Rscript -e "rmarkdown::render('doc/Report.Rmd')"
 
 # remove the entire analysis
@@ -68,9 +71,10 @@ clean :
 	rm -rf data/processed/train_processed.csv
 	rm -rf data/processed/test_processed.csv
 	rm -rf results/best_model.pkl
-	rm -rf results/train_metrics.jpg
-	rm -rf results/Top_20_Good_features.csv
-	rm -rf results/Top_20_Bad_features.csv
-	rm -rf results/prediction/prediction.csv
-	rm -rf results/prediction/test_metrics.jpg
+	rm -rf results/feature_model_selection.jpg
+	rm -rf results/shap_explainer.jpg
+	rm -rf results/cross_valid_metric.csv
+	rm -rf results/test_metric.csv
+	rm -rf results/confusion_matrix.jpg
+	rm -rf results/prediction.csv
 	rm -rf doc/Report.html
