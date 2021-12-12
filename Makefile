@@ -10,7 +10,7 @@
 # make all
 
 #make all dependencies
-all : doc/Report.html
+all : doc/ramen_ratings_report.html
 
 # download the dataset from The Ramen Rater website
 data/raw/ramen_ratings.csv : src/download_data.py
@@ -50,13 +50,13 @@ results/prediction.csv results/confusion_matrix.jpg : data/processed/test_proces
 	--out_file_result="results/"
 
 # write the report
-doc/Report.html : results/prediction/prediction.csv results/prediction/test_metrics.jpg \
+doc/ramen_ratings_report.html : results/prediction/prediction.csv results/prediction/test_metrics.jpg \
 results/figures/stars_histogram.png results/figures/type_histogram.png \
 results/figures/variety_wordcloud.png results/figures/ramen_map.png \
 results/feature_model_selection.jpg results/shap_explainer.jpg \
 results/cross_valid_metric.csv results/test_metric.csv \
 results/confusion_matrix.jpg
-	Rscript -e "rmarkdown::render('doc/Report.Rmd')"
+	Rscript -e "rmarkdown::render('doc/ramen_ratings_report.Rmd')"
 
 # remove the entire analysis
 clean :
@@ -77,4 +77,4 @@ clean :
 	rm -rf results/test_metric.csv
 	rm -rf results/confusion_matrix.jpg
 	rm -rf results/prediction.csv
-	rm -rf doc/Report.html
+	rm -rf doc/ramen_ratings_report.html

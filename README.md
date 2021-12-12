@@ -9,34 +9,15 @@ This is a class project for DSCI 522 (Data Science Workflows), a course in the M
   - Wenjia Zhu
   - Xiaohan Chen
 
-## Summary
-### Introduction
-  How can we know an instant noodle, aka Ramen, tastes good or not? Will the brand matter? Does a cup noodle always taste better than a pack one?
+## About
+  How can we know an instant noodle, aka Ramen, tastes good or not before tasting it? Will the brand matter? Does a cup noodle always taste better than a pack one?
 
-  To figure out what features are important for a Ramen's taste, and predict whether a Ramen is good or not with its features, we used a dataset with over 3000 reviews on all kinds of instant noodles. And since the Star, our target value, is discontinuous. We then define this problem as a categorical problem, and convert the target Star to a binary variable at a threshold of 3.5, with 0 (Star < 3.5) being bad ramen and 1 (Star >= 3.5) for good ramen. This threshold is set by the original reviewer himself.
+  As ramen buyers, we are interested in figuring out what features are important in finding a good ramen and how we can use these features to predict whether a pack of ramen is good or bad. We used a data set with 3950 reviews on all kinds of instant noodles to carry out the analysis. Our target is a binary variable indicating whether the product is good or bad and we aim to classify a ramen based on its features.
+  
+  We compared 4 classification machine learning models and used hyperparameter tuning, cross validation, and feature selection to find the best performing model based on scores. Our final model performed well on an unseen test data set, with a precision score of 0.760, a recall score of 0.954, and a F1 score of 0.847. On the 790 test cases, it correctly predicted 581 cases (accuracy of 73.5%).  We hope that our analysis can provide insights to ramen lovers and general consumers during their purchases in stores and help ramen companies decide their marketing strategies to increase sales.
 
-  This is not a big question, but it is a good start of figuring out a result in real-life problems with data science for us. Considering the usefulness of this model for food lovers around the world when choosing a Ramen, we consider this question a very interesting and meaningful one.
-
-  In this project, we explored the world of instant noodles, aka ramen with a dataset containing over 2500 reviews on all kinds of instant noodles. The main problem we try to solve is to find what features are important for predicting a ramen’s rating. We used the OneHotEncoder(), CountVector() to transform the data. With the logistic regression model, we finally get an AUC score of 0.722 on the test dataset and summarize the top 5 good features and also top 5 bad features in our report. 
-### Dataset
-The [dataset](https://www.theramenrater.com/wp-content/uploads/2021/09/The-Big-List-All-reviews-up-to-3950.xlsx) we used in this project is downloaded from an data analysist called Aleksey Bilogur. Reviews are based on personal preferences, not on sales of popularity. It is updated as of September 22nd, 2021. Current as of review #3950, recording the Ramen features including:
- - Review: Record ID, not meaningful for Ramen itself.
- - Brand: The company produces this Ramen
- - Variety: A brief description about Ramen's tasty style like spicy, chicken, etc.
- - Country: Where this Ramen comes from
- - Style: It is a cup noodle, bowl noodle or pack one.
- - Top Ten: Whether this Ramen is listed as Top Ten Ramen worldwide before.
-And there is one more column: our target column, star.
-### Method
-We split our data, with 80% as train df and 20% as test df. After exploring the data with EDA, we decide to drop Top Ten column, since it is very sparse, with many NULLs in it. To better interpret each feature's importance to the final prediction, we use a linear regression model. 
-
-Before model training, column transformation is conducted. We use OneHotEncoder() on Brand, Style, and Country, three categorical columns, and CountVector() on Variety, to split these texts into seperate word, finding which word's appearance will make the Ramen better. 
-
-After training this model with the LogisticRegression() method, a basic linear regression model from python package sklearn, we get a AUC score of 0.722 on the test data, which is good enough for a simple model like ours.
-
-AUC, Area Under receiver operating characteristic Curve. We choose this score metrix to relieve possible problems in the context of class imbalanced, the target classes (good and bad) is 0.7 vs. 0.3.
 ## Report
-The final report can see here: [Report](https://github.com/PANDASANG1231/522_Ramen/blob/main/doc/report.html)
+The final report can be found here: [Report](https://github.com/PANDASANG1231/522_Ramen/blob/main/doc/ramen_ratings_report.html)
 
 ## Usage
 
@@ -58,9 +39,6 @@ To revert to a clean state and redo all the analysis, run the following command 
 ```
 make clean
 ```
-
-<img src="https://raw.githubusercontent.com/PANDASANG1231/522_Ramen/main/Makefile.png" height="200px">
-
 
 ## Dependencies
 
@@ -113,14 +91,4 @@ All the reviews are based on the personal preference of the author and are not b
  <https://www.theramenrater.com/wp-content/uploads/2021/09/The-Big-List-All-reviews-up-to-3950.xlsx>.
 </div>
 
-<div id="ref-Streetetal">
-
-Ramen (ラーメン) is a noodle soup dish that was originally imported from China
- and has become one of the most popular dishes in Japan in recent decades.
-Ramen are inexpensive and widely available, two factors that also make them 
-an ideal option for budget travelers. Ramen restaurants, or ramen-ya, can 
-be found in virtually every corner of the country and produce countless regional 
-variations of this common noodle dish.
-<https://www.japan-guide.com/e/e2042.html>.
-</div>
 </div>
