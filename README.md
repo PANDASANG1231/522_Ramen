@@ -23,9 +23,22 @@ The final report can be found here: [Report](https://github.com/PANDASANG1231/52
 
 We use python in this project and the workflow and orders of using scripts is as below:
 ![avatar](workflow.png)
+
 ### With Docker
-You can run the pipeline with:
->To be added
+
+To reproduce the analysis using Docker, first install [Docker](https://www.docker.com/get-started). Then clone this GitHub
+repository and run the following command at the command line/terminal
+from the root directory of this project:
+
+```
+docker run --rm -v $PWD:/home/522ramen/ make -C '/home/522ramen' all
+```
+
+To revert to a clean state and redo all the analysis, run the following command at the command line/terminal from the root directory of this project:
+
+```
+docker run --rm -v $PWD:/home/522ramen/ make -C '/home/522ramen' clean
+```
 
 ### Without Docker
 To reproduce the analysis without using Docker, clone this GitHub repository, install the [dependencies](#dependencies) listed below, and run the following command at the command line/terminal from the root directory of this project:
