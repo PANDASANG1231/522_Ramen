@@ -35,4 +35,5 @@ RUN pip install rpy2==3.4.5
 
 RUN Rscript -e "install.packages('knitr')"
 RUN Rscript -e "install.packages('tidyverse')"
+RUN Rscript -e "install.packages('dplyr')"
 Run Rscript -e "install.packages('rmarkdown')"
