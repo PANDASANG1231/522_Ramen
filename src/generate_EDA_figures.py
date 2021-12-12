@@ -1,12 +1,12 @@
 # author: Allyson Stoll
 # date: 2021-11-25
 
-"""Create EDA figures for the 522_Ramen project
+"""Generate EDA figures for the 522_Ramen project
 
-Usage: create_EDA_figures.py --path=<path> --out_path=<out_path>
+Usage: Generate_EDA_figures.py --path=<path> --out_path=<out_path>
 
 Options:
---path=<path>             the data to process
+--path=<path>           The data to process
 --out_path=<out_path>   Path (excluding filenames) of where to locally write the file
 """
 
@@ -27,6 +27,15 @@ opt = docopt(__doc__)
 
 def main(path, out_path):
     df = pd.read_csv(path)
+
+    # Generate CSV of null value
+    train_nulls_df = pd.DataFrame(train_df.isnull().sum(), columns = ['No. of Nulls'])
+
+    try:
+        train_nulls_df.to_csv(out_path + "/null_counts.csv", index=False)
+    except:
+        os.makedirs(os.path.dirname(out_path))
+        train_nulls_df.to_csv(out_path + "/null_counts.csv", index=False)
 
     # Making the ratings histogram
     rating_histo = (
