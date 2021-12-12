@@ -13,7 +13,7 @@ bibliography: ramen_rating_refs.bib
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(knitr)
-library(kableExtra)
+# library(kableExtra)
 library(tidyverse)
 ```
 
@@ -28,7 +28,7 @@ As ramen buyers, we are interested in figuring out what features are important i
 
 # The Dataset
 
-The original data set contains 3950 rows and 7 columns. Each observation in the data set is a review for a single ramen product. The features include a review number, where bigger number represents a more recent review, the brand, the product's name, its manufacturing country, packaging style (such as cup or bowl), a star rating, which range from 0 to 5 inclusively with 0.25 increments, and a boolean value indicating if the product is the reviewer's top ten list. Note that the stars represent the reviewer's personal preference and are not based on sales or popularity. 
+The original data set contains 3950 rows and 7 columns. Each observation in the data set is a review for a single ramen product. The features include a review number, where bigger number represents a more recent review, the brand, the product's name, its manufacturing country, packaging style (such as cup or bowl), a star rating, which range from 0 to 5 inclusively with 0.25 increments, and a boolean value indicating if the product is in the world's top ten ramen list. Note that the stars represent the reviewer's personal preference and are not based on sales or popularity. 
 
 Our prediction is the star rating. We decide to convert the rating to a binary variable using a threshold of 3.5, with 0 (`Star` < 3.5) being bad ramen and 1 (`Star` >= 3.5) being good ramen. This threshold is set by the original reviewer himself.
 
