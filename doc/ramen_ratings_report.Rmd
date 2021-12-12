@@ -14,7 +14,7 @@ bibliography: ramen_rating_refs.bib
 knitr::opts_chunk$set(echo = FALSE)
 library(knitr)
 # library(kableExtra)
-library(tidyverse)
+library(dyplr)
 ```
 
 
