@@ -3,7 +3,7 @@
 
 """Generate EDA figures for the 522_Ramen project
 
-Usage: Generate_EDA_figures.py --path=<path> --out_path=<out_path>
+Usage: generate_EDA_figures.py --path=<path> --out_path=<out_path>
 
 Options:
 --path=<path>           The data to process
@@ -29,13 +29,13 @@ def main(path, out_path):
     df = pd.read_csv(path)
 
     # Generate CSV of null value
-    train_nulls_df = pd.DataFrame(train_df.isnull().sum(), columns = ['No. of Nulls'])
+    nulls_df = pd.DataFrame(df.isnull().sum(), columns = ['No. of Nulls'])
 
     try:
-        train_nulls_df.to_csv(out_path + "/null_counts.csv", index=False)
+        nulls_df.to_csv(out_path + "/null_counts.csv", index=False)
     except:
         os.makedirs(os.path.dirname(out_path))
-        train_nulls_df.to_csv(out_path + "/null_counts.csv", index=False)
+        nulls_df.to_csv(out_path + "/null_counts.csv", index=False)
 
     # Making the ratings histogram
     rating_histo = (
