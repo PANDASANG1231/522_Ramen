@@ -31,13 +31,13 @@ repository and run the following command at the command line/terminal
 from the root directory of this project:
 
 ```
-docker run --rm -v $PWD:/home/522ramen/ PANDASANG1231/dockerfile make -C '/home/522ramen' all
+docker run --rm -v $PWD:/home/522ramen/ zwj63518583/dockerfile make -C '/home/522ramen' all
 ```
 
 To revert to a clean state and redo all the analysis, run the following command at the command line/terminal from the root directory of this project:
 
 ```
-docker run --rm -v $PWD:/home/522ramen/ PANDASANG1231/dockerfile make -C '/home/522ramen' clear
+docker run --rm -v $PWD:/home/522ramen/ zwj63518583/dockerfile make -C '/home/522ramen' clean
 ```
 
 ### Without Docker

@@ -109,18 +109,20 @@ def model_train(X_train, y_train, feature_list, out_file_result):
     
     from scipy.stats import randint
 
-    param_grid = {
-        "learning_rate": np.linspace(0.05,0.3,10),
-        "max_depth": randint(3, 7),
-        "n_estimators": [400, 500, 600, 700, 800],
-    }
-    model = CatBoostClassifier(random_state=123, verbose=0,class_weights=[0.2, 0.3])
-    rscv = RandomizedSearchCV(model, param_grid, scoring='accuracy', cv=5, random_state=123, return_train_score=True)
-    rscv.fit(X_train[feature_list], y_train)
-    print(rscv.best_params_)
+    # param_grid = {
+    #     "learning_rate": np.linspace(0.05,0.3,10),
+    #     "max_depth": randint(3, 7),
+    #     "n_estimators": [400, 500, 600, 700, 800],
+    # }
+    # model = CatBoostClassifier(random_state=123, verbose=0,class_weights=[0.2, 0.3])
+    # rscv = RandomizedSearchCV(model, param_grid, scoring='accuracy', cv=5, random_state=123, return_train_score=True)
+    # rscv.fit(X_train[feature_list], y_train)
+    # print(rscv.best_params_)
 
-    final_model = CatBoostClassifier(random_state=123, verbose=0,class_weights=[0.2, 0.3], **rscv.best_params_)
-    
+    best_params = {'learning_rate': 0.078, 'max_depth': 5, 'n_estimators': 600}
+    print(best_params)
+    final_model = CatBoostClassifier(random_state=123, verbose=0,class_weights=[0.2, 0.3], **best_params)
+
     scores = cross_validate(
         final_model, X_train[feature_list], y_train, return_train_score=True, scoring=["accuracy", "f1", "recall", "precision",]
     )

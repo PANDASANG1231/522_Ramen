@@ -58,6 +58,7 @@ results/cross_valid_metric.csv results/test_metric.csv \
 results/confusion_matrix.jpg
 	Rscript -e "rmarkdown::render('doc/ramen_ratings_report.Rmd')"
 
+
 # remove the entire analysis
 clean :
 	rm -rf data/raw/ramen_ratings.csv
@@ -77,4 +78,4 @@ clean :
 	rm -rf results/test_metric.csv
 	rm -rf results/confusion_matrix.jpg
 	rm -rf results/prediction.csv
-	rm -rf doc/ramen_ratings_report.html
+	rm -rf doc/ramen_ratings_report.htm

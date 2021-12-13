@@ -2,6 +2,8 @@ FROM continuumio/miniconda3
 
 RUN apt-get update
 RUN apt-get install r-base r-base-dev -y
+RUN apt-get install pandoc -y
+RUN apt-get install pandoc-citeproc -y
 
 RUN conda install matplotlib=3.5.0 -y
 RUN conda install pandas=1.3.4 -y
@@ -35,4 +37,4 @@ RUN pip install rpy2==3.4.5
 
 RUN Rscript -e "install.packages('knitr')"
 RUN Rscript -e "install.packages('dplyr')"
-Run Rscript -e "install.packages('rmarkdown')"
+RUN Rscript -e "install.packages('rmarkdown')"
