@@ -21,6 +21,7 @@ The final report can be found here: [Report](https://github.com/PANDASANG1231/52
 
 ## Usage
 
+**Note for TA: that the code needs to run about 2-5 minutes.**
 We use python in this project and the workflow and orders of using scripts is as below:
 ![avatar](workflow.png)
 
@@ -43,6 +44,8 @@ docker run --rm -v $PWD:/home/522ramen/ zwj63518583/dockerfile make -C '/home/52
 ### Without Docker
 To reproduce the analysis without using Docker, clone this GitHub repository, install the [dependencies](#dependencies) listed below, and run the following command at the command line/terminal from the root directory of this project:
 
+<img src="https://raw.githubusercontent.com/PANDASANG1231/522_Ramen/main/Makefile.png" height="200px">
+
 ```
 make all
 ```
@@ -57,37 +60,45 @@ make clean
 
 The dependencies is listed in the environment.yaml, which you can find [here](https://raw.githubusercontent.com/PANDASANG1231/522_Ramen/main/environment.yaml).
 
- - ipykernel
-  - matplotlib>=3.2.2
-  - scikit-learn>=1.0
-  - pandas>=1.3.*
-  - requests>=2.24.0
-  - altair_saver
-  - vega_datasets
-  - graphviz
-  - python-graphviz
-  - jinja2y
-  - pip
-  - py-xgboost==1.3.0
-  - spacy
-  - wikipedia
-  - nltk
-  - imbalanced-learn
-  - pandas-profiling
-  - ipywidgets
-  - docopt
-  - pycountry
-  - wordcloud
-  - geopandas
-  - openpyxl
-  - pip:
-    - boruta=0.3
+  - System Packages
+    - r-base
+    - pandoc
+    - pandoc-citeproc
+
+  - Python Packages 
+    - matplotlib=3.5.0
+    - pandas=1.3.4
+    - requests=2.26.0
+    - scikit-learn=1.0.1
+    - vega_datasets=0.7.0
+    - jinja2=3.0.2
+    - lightgbm=3.2.1
+    - py-xgboost=1.5.0
+    - catboost=0.26.1
+    - spacy=2.3.5
+    - nltk=3.6.5
+    - shap=0.39.0
     - seaborn=0.11.2
-    - shap-0.4.0.0
-    - catboost=1.0.3
-    - mglearn
-    - psutil>=5.7.2
-    - rpy2
+    - pandas-profiling=2.9.0
+    - ipywidgets=7.6.5
+    - docopt=0.6.2
+    - openpyxl=3.0.9
+    - graphviz==0.19
+    - altair_saver==0.5.0
+    - wikipedia==1.4.0
+    - eli5==0.11.0
+    - imbalanced-learn==0.8.1
+    - pycountry==20.7.3
+    - wordcloud==1.8.1
+    - geopandas==0.10.2
+    - boruta==0.3
+    - mglearn==0.1.9
+    - rpy2==3.4.5
+
+  - R Packages
+    - install.packages('knitr')
+    - install.packages('dplyr')
+    - install.packages('rmarkdown')
 
 ## License
 
